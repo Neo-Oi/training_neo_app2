@@ -1,0 +1,23 @@
+<h1>新規登録</h1>
+<%= form_with url: logins_path, scope: :login do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+    
+  <div>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+
+  <div>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+
+  <div>
+    <%= f.label :role %>
+    <%= f.select :role, [["一般ユーザー", "member"], ["管理者", "admin"]] %>
+  </div>
+  <%= f.submit %>
+<% end %>

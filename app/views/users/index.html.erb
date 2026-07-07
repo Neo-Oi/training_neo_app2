@@ -1,0 +1,22 @@
+<h1>管理者用一覧</h1>
+<div>
+<h2>ログイン中：<%= current_user.name %></h2>
+</div>
+<h3>
+ユーザー一覧
+<% @users.each do |user|%>
+    <div>
+    ---
+    <br>
+    name: <%= user.name%>
+    <br>
+    email: <%= user.email%>
+    <br>
+    role: <%= user.role%>
+    <br>
+    ---
+    </div>
+<%end%>
+</h3>
+
+<h2><%=link_to "新規登録", logins_new_path %></h2>

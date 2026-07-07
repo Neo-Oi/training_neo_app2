@@ -1,0 +1,17 @@
+<h1>ログイン</h1>
+<%= form_with url: logins_path, scope: :login, data: { turbo: false } do |f| %>    
+  <div> 
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+  <div>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <%= f.submit %>
+<% end %>
+
+<div>
+<p>users/4にアクセス<p>
+<%=link_to"不正アクセス用",user_path(4)%>
+</div>

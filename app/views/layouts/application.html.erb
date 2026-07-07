@@ -23,6 +23,17 @@
   </head>
 
   <body>
+    <% if flash[:notice] %>
+      <p><%= flash[:notice] %></p>
+    <% end %>
     <%= yield %>
+  <footer>
+    <%unless current_user == nil%>
+      <li>
+        <ul><%=link_to"ホームへ",homes_path%></ul>
+      </li>
+    <%end%>
+  </footer>
+    
   </body>
 </html>
