@@ -1,7 +1,4 @@
 <% content_for :title, "ユーザ一覧ページ" %>
-<div>
-<h2>ログイン中：<%= current_user.name %></h2>
-</div>
 <h3>
 ユーザー一覧
 <% @users.each do |user|%>
@@ -13,6 +10,8 @@
     email: <%= user.email%>
     <br>
     role: <%= user.role%>
+    <br>
+    <%=link_to "編集",edit_user_path(current_user)%>
     <br>
     ---
     </div>

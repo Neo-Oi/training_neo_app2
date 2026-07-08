@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
-helper_method :current_user
 before_action :user_init
 before_action :role_init
+helper_method :current_user
+
 
   def user_init 
       redirect_to root_path if current_user == nil

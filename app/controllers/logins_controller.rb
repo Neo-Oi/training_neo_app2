@@ -1,6 +1,6 @@
 class LoginsController < ApplicationController
-    skip_before_action :user_init,only %i[index]
-    skip_before_action :role_init,only %i[index]
+    skip_before_action :user_init,only: %i[index create]
+    skip_before_action :role_init,only: %i[index create]
 
     def create
         session[:login_failed_count] ||= 0

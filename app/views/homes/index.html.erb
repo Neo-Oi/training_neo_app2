@@ -1,6 +1,7 @@
 <% content_for :title, "ホームページ" %>
-<li>
-    <ul><%=link_to "管理一覧",users_path%></ul>
-    <ul><%=link_to "#{current_user.name}のマイページ",user_path(current_user)%></ul>
-    <ul><%=button_to "ログアウト",logout_path,method: :delete%></ul>
-</li>
+<div>
+    <ul> 
+        <li>"こんにちはname"をクリックでマイページへ遷移</li>
+        <li>管理者でログインであれば、権限:"管理者"をクリックで管理者ページへ遷移</li>
+    </ul>
+</div>

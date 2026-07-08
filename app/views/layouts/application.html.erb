@@ -24,21 +24,62 @@
 
   <body>
     <header>
-    <p>通知:
+    <div>
+    <h1>ここは<%= content_for(:title) || "未設定ページ" %>です</h1>
+    </div>
+
+    <div>
+    <% if current_user&.present? %>
+    <%= link_to "ホームページへ", homes_path %>
+    <% end %>
+    </div>
+    <div>
+    <p>
+      <% if current_user&.name.present? %>
+        <%= link_to "こんにちは#{current_user.name}",user_path(current_user) %>
+      <% else %>
+        こんにちは
+      <% end %>
+    </p>
+    </div>
+
+    <div>
+    <p>
+      通知:
       <% if flash[:notice] == nil %>
         ありません
       <% else %>
         <%= flash[:notice] %>
       <% end %>
-      </p>
+    </p>
+    </div>
+    
+    </div>
+    <p>
+    権限:
+      <% if current_user&.role == "member" %>
+        一般
+      <% elsif current_user&.role == "admin" %>
+        <%= link_to "管理者", users_path %>
+      <% else %>
+        未ログイン
+      <% end %>
+    </p>
+    </div>
+
+    <div>
+    <% if current_user&.present? %>
+    <ul>
+      <%=button_to "ログアウト",logout_path,method: :delete%>
+    <ul>
+    <% end %>
+    </div>
+
+
+
   </header>
     <%= yield %>
   <footer>
-    <%unless current_user == nil%>
-      <li>
-        <ul><%=link_to"ホームへ",homes_path%></ul>
-      </li>
-    <%end%>
   </footer>
     
   </body>
