@@ -14,16 +14,17 @@ class LoginsController < ApplicationController
 
         if params[:login][:email]&&params[:login][:password].blank?
             flash.now[:notice] = "emailとpasswordは必須項目です"
-            render :index
-            return
-        elsif params[:login][:email].blank?
-            flash.now[:notice] = "emailは必須項目です"
-            render :index
+            render :index, status: :unprocessable_entity
             return
         elsif params[:login][:password].blank?
             flash.now[:notice] = "passwordは必須項目です"
-            render :index
+            render :index, status: :unprocessable_entity
             return
+        elsif params[:login][:email].blank?
+            flash.now[:notice] = "emailは必須項目です"
+            render :index, status: :unprocessable_entity
+            return
+        
         end
 
         if user&.authenticate(params[:login][:password])
@@ -34,7 +35,7 @@ class LoginsController < ApplicationController
         else
             session[:login_failed_count] += 1
             flash.now[:notice] = "#{session[:login_failed_count]}回目の失敗　パスワードまたはメールアドレスが異なります。"
-            render :index
+            render :index, status: :unprocessable_entity
             return
         end
     end
