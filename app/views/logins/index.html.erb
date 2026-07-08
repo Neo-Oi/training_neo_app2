@@ -1,5 +1,6 @@
 <% content_for :title, "ログインページ" %>
-<%= form_with url: logins_path, scope: :login, data: { turbo: false } do |f| %>    
+<%= form_with url: logins_path, scope: :login,
+              data: { turbo: false } do |f| %>    
   <div> 
     <%= f.label :email %>
     <%= f.email_field :email %>
@@ -11,7 +12,4 @@
   <%= f.submit %>
 <% end %>
 
-<div>
-<p>users/4にアクセス<p>
-<%=link_to"不正アクセス用",user_path(4)%>
-</div>
+<%=link_to"defのマイページ",user_path(6)%>

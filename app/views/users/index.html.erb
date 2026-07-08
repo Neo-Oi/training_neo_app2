@@ -1,9 +1,10 @@
 <% content_for :title, "ユーザ一覧ページ" %>
 <h3>
 ユーザー一覧
+<br>
+---
 <% @users.each do |user|%>
     <div>
-    ---
     <br>
     name: <%= user.name%>
     <br>

@@ -6,3 +6,14 @@
         <li>管理者でログインであれば、権限:"管理者"をクリックで管理者ページへ遷移</li>
     </ul>
 </div>
+
+<div>
+<h4>確認用</h4>
+<p>権限</p>
+<ul>
+<li><%= link_to "管理者一覧",users_path%></li>
+<li><%= link_to "新規作成",new_user_path%></li>
+<li><%= link_to "ユーザーdef編集",users_path(6)%></li>
+<li><%= button_to "ユーザーdef削除",users_path(6),method: :delete %></li>
+</ul>
+</div>
