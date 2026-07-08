@@ -1,6 +1,6 @@
 <% content_for :title, "新規登録ページ" %>
 <h2>新規作成フォーム</h2>
-<%= form_with moel: @user do |f| %>
+<%= form_with model: @user do |f| %>
   <div>
     <%= f.label :name %>
     <%= f.text_field :name %>

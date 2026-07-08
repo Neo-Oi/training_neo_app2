@@ -9,9 +9,36 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
     end
 
+    def edit
+        @user = User.find(params[:id])
+    end
+
+    def update
+        @user = User.find(params[:id])
+
+        blanks = %i[email password name role].select do |field|
+            params[:user][field].blank?
+        end
+
+        if blanks.any?
+            flash.now[:notice] = "#{blanks.join(',')}は必須項目です"
+            render :edit, status: :unprocessable_entity
+            return
+        end
+
+        if @user.update(user_params)
+            redirect_to users_path
+            flash.now[:notice] = "#{@user}のユーザ情報が更新されました"
+        else
+            render :edit, status: :unprocessable_entity
+        end
+    end
+
     def new
         @user = User.new
     end
+    
+   
 
     def create
         @user = User.new(user_params)
