@@ -1,5 +1,6 @@
 <% content_for :title, "新規登録ページ" %>
-<%= form_with url: logins_path, scope: :login do |f| %>
+<h2>新規作成フォーム</h2>
+<%= form_with model: @user do |f| %>
   <div>
     <%= f.label :name %>
     <%= f.text_field :name %>

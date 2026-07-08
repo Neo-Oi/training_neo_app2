@@ -1,1 +1,29 @@
 <% content_for :title, "ユーザ情報編集ページ" %>
+
+
+    <div>
+    ---
+<%= form_with model: @user do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+    
+  <div>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+
+  <div>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+
+  <div>
+    <%= f.label :role %>
+    <%= f.select :role, [["一般ユーザー", "member"], ["管理者", "admin"]] %>
+  </div>
+  <%= f.submit %>
+<% end %>
+    ---
+    </div>

@@ -1,6 +1,6 @@
 class LoginsController < ApplicationController
-    skip_before_action :user_init,only: %i[index create]
-    skip_before_action :role_init,only: %i[index create]
+    skip_before_action :user_init,only: %i[index create destroy]
+    skip_before_action :role_init,only: %i[index create destroy]
 
     def create
         session[:login_failed_count] ||= 0
@@ -12,17 +12,13 @@ class LoginsController < ApplicationController
 
         user = User.find_by(email: params[:login][:email])
 
-        if params[:login][:email]&&params[:login][:password].blank?
-            flash.now[:notice] = "emailとpasswordは必須項目です"
-            render :index
-            return
-        elsif params[:login][:email].blank?
-            flash.now[:notice] = "emailは必須項目です"
-            render :index
-            return
-        elsif params[:login][:password].blank?
-            flash.now[:notice] = "passwordは必須項目です"
-            render :index
+        blanks = %i[email password].select do |field|
+            params[:login][field].blank?
+        end
+
+        if blanks.any?
+            flash.now[:notice] = "#{blanks.join(',')}は必須項目です"
+            render :index, status: :unprocessable_entity
             return
         end
 
@@ -33,8 +29,8 @@ class LoginsController < ApplicationController
             return
         else
             session[:login_failed_count] += 1
-            flash.now[:notice] = "#{session[:login_failed_count]}回目の失敗　パスワードまたはメールアドレスが異なります。"
-            render :index
+            flash.now[:notice] = "#{session[:login_failed_count]}回目の失敗　原因:パスワードまたはメールアドレスが異なります。"
+            render :index, status: :unprocessable_entity
             return
         end
     end

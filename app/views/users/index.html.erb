@@ -11,11 +11,11 @@
     <br>
     role: <%= user.role%>
     <br>
-    <%=link_to "編集",edit_user_path(current_user)%>
+    <%=link_to "編集",edit_user_path(user)%>
     <br>
     ---
     </div>
 <%end%>
 </h3>
 
-<h2><%=link_to "新規登録", logins_new_path %></h2>
+<h2><%=link_to "新規登録", new_user_path %></h2>
