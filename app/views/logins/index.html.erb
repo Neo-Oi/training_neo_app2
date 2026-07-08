@@ -1,4 +1,4 @@
-<h1>ログイン</h1>
+<% content_for :title, "ログインページ" %>
 <%= form_with url: logins_path, scope: :login, data: { turbo: false } do |f| %>    
   <div> 
     <%= f.label :email %>

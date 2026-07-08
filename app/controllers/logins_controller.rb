@@ -1,16 +1,6 @@
 class LoginsController < ApplicationController
-    before_action :user_init, only: %i[new]
-    before_action :role_init, only: %i[new]
-
-    def user_init 
-        redirect_to root_path if current_user == nil
-    end
-
-    def role_init
-            return redirect_to root_path if current_user.nil?
-        redirect_to user_path(current_user) if current_user.role == "member"
-    end
-
+    skip_before_action :user_init,only %i[index]
+    skip_before_action :role_init,only %i[index]
 
     def create
         session[:login_failed_count] ||= 0
@@ -22,12 +12,16 @@ class LoginsController < ApplicationController
 
         user = User.find_by(email: params[:login][:email])
 
-        if params[:login][:email].blank?
-            flash.now[:notice] = "必須項目です"
+        if params[:login][:email]&&params[:login][:password].blank?
+            flash.now[:notice] = "emailとpasswordは必須項目です"
+            render :index
+            return
+        elsif params[:login][:email].blank?
+            flash.now[:notice] = "emailは必須項目です"
             render :index
             return
         elsif params[:login][:password].blank?
-            flash.now[:notice] = "必須項目です"
+            flash.now[:notice] = "passwordは必須項目です"
             render :index
             return
         end
@@ -39,8 +33,7 @@ class LoginsController < ApplicationController
             return
         else
             session[:login_failed_count] += 1
-            flash.now[:notice] = "パスワードまたはメールアドレスが異なります。
-                              #{session[:login_failed_count]}回目の失敗"
+            flash.now[:notice] = "#{session[:login_failed_count]}回目の失敗　パスワードまたはメールアドレスが異なります。"
             render :index
             return
         end

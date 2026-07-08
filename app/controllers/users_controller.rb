@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-    before_action :user_init, only: %i[show]
-    before_action :role_init, only: %i[index]
+    skip_before_action :role_init,only %i[show]
 
     def user_init 
         redirect_to root_path if current_user == nil

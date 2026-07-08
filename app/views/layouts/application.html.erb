@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Myapp" %></title>
+    <title><%= yield(:title).presence || "プライムテック研修開発" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -23,9 +23,15 @@
   </head>
 
   <body>
-    <% if flash[:notice] %>
-      <p><%= flash[:notice] %></p>
-    <% end %>
+    <header>
+    <p>通知:
+      <% if flash[:notice] == nil %>
+        ありません
+      <% else %>
+        <%= flash[:notice] %>
+      <% end %>
+      </p>
+  </header>
     <%= yield %>
   <footer>
     <%unless current_user == nil%>

@@ -1,4 +1,4 @@
-<h1>ホーム</h1>
+<% content_for :title, "ホームページ" %>
 <li>
     <ul><%=link_to "管理一覧",users_path%></ul>
     <ul><%=link_to "#{current_user.name}のマイページ",user_path(current_user)%></ul>
