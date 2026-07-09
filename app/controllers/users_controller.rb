@@ -4,7 +4,6 @@ class UsersController < ApplicationController
         @users = User.all
     end
 
-
     def show
         @user = User.find(params[:id])
     end
@@ -30,6 +29,7 @@ class UsersController < ApplicationController
             redirect_to users_path
             flash.now[:notice] = "#{@user}のユーザ情報が更新されました"
         else
+            flash.now[:notice] = "#{@user}のユーザ情報の更新に失敗しました"
             render :edit, status: :unprocessable_entity
         end
     end
@@ -54,11 +54,23 @@ class UsersController < ApplicationController
         end
 
         if @user.save
-            redirect_to users_path
+            redirect_to users_path,notice: "#{@user.name}の作成に成功しました"
         else
-            flash.now[:notice]
+            flash.now[:notice] = "ユーザの作成に失敗しました"
             render :new, status: :unprocessable_entity
             return
+        end
+    end
+
+    def destroy
+        @user = User.find(params[:id])
+
+        if current_user.role == "admin"
+            @user.destroy
+            redirect_to root_path,notice: "#{@user.name}の削除に成功しました"
+        else
+            flash.now[:notice] = "権限がないため削除に失敗しました"
+            render :edit, status: :unprocessable_entity
         end
     end
 

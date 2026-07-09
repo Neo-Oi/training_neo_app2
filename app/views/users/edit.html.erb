@@ -1,4 +1,4 @@
-<% content_for :title, "ユーザ情報編集ページ" %>
+<% content_for :title, "編集ページ" %>
 
 
     <div>
@@ -24,6 +24,12 @@
     <%= f.select :role, [["一般ユーザー", "member"], ["管理者", "admin"]] %>
   </div>
   <%= f.submit %>
+
+
 <% end %>
     ---
+    </div>
+
+    <div>
+        <%= button_to "対象ユーザの削除", user_path(@user),method: :delete,data: { turbo_confirm: "本当に#{@user.name}を削除しますか？" } %>
     </div>

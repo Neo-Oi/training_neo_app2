@@ -5,12 +5,13 @@ helper_method :current_user
 
 
   def user_init 
-      redirect_to root_path if current_user == nil
+      redirect_to root_path,
+      notice: "ログインをしてください" if current_user == nil
   end
 
   def role_init
-      return redirect_to root_path if current_user.nil?
-      redirect_to user_path(current_user) if current_user.role == "member"
+      redirect_to homes_path,
+      notice: "権限がありません" if current_user.role == "member"
   end
 
 private

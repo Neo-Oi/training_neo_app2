@@ -5,12 +5,9 @@ class LoginsController < ApplicationController
     def create
         session[:login_failed_count] ||= 0
         if session[:login_failed_count] >= 2
-           flash[:notice] = "ログイン回数が３回を超えました"
-           redirect_to fails_path
+           redirect_to fails_path,notice: "ログイン回数が３回を超えました"
            return
         end
-
-        user = User.find_by(email: params[:login][:email])
 
         blanks = %i[email password].select do |field|
             params[:login][field].blank?
@@ -22,10 +19,12 @@ class LoginsController < ApplicationController
             return
         end
 
+        user = User.find_by(email: params[:login][:email])
+
         if user&.authenticate(params[:login][:password])
             session[:user_id] = user.id
             session[:login_failed_count] = 0
-            redirect_to homes_path
+            redirect_to homes_path,notice: "ログインに成功しました"
             return
         else
             session[:login_failed_count] += 1
@@ -37,6 +36,6 @@ class LoginsController < ApplicationController
 
     def destroy
         reset_session
-        redirect_to root_path
+        redirect_to root_path,notice: "ログアウトしました"
     end
 end

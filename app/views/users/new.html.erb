@@ -1,5 +1,6 @@
 <% content_for :title, "新規登録ページ" %>
 <h2>新規作成フォーム</h2>
+<div class = "form_box">
 <%= form_with model: @user do |f| %>
   <div>
     <%= f.label :name %>
@@ -21,4 +22,5 @@
     <%= f.select :role, [["一般ユーザー", "member"], ["管理者", "admin"]] %>
   </div>
   <%= f.submit %>
+  </div>
 <% end %>

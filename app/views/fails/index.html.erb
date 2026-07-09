@@ -1,3 +1,2 @@
-<% content_for :title, "ログインリセットページ" %>
-<p><%= session[:login_failed_count]+1 %>回失敗しました</p>
+<% content_for :title, "リセットページ" %>
 <%= button_to "ログイン失敗回数をリセット", reset_login_fails_path, method: :post %>

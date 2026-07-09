@@ -1,10 +1,76 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+header {
+  position: sticky;
+  top: 8px;
+  display: flex;
+  width: flex;
+  height: flex;
+  background-color: rgba(34, 34, 36);
+  align-items: center;
+}
+ 
+.title {
+  text-align: left;
+  min-width: 250px;
+  max-width: 250px;
+  margin-left: 20px;
+}
+ 
+.menu-item {
+  display: inline-block;
+  padding: 10px;
+}
+
+body {
+  background-color: rgb(11, 31, 58);
+  width: flex;
+  text-align: center;
+  align-items: center;
+  color: white;
+}
+
+ul, ol {
+  list-style: none;
+  padding-left: 0;
+  
+}
+
+.user_box {
+  margin: 30px auto;
+  padding: 5px 50px;
+  width: fit-content;
+  background-color: rgba(34, 34, 36, 0.8);
+  align-items: center;
+}
+
+.button_to button{
+  width: fit-content;
+  border-radius: 50px;
+  min-width: 8em;
+  height:3em;
+}
+
+.float{
+  position: fixed;
+  border-radius: 50px;
+  bottom: 30px;
+  right: 30px;
+  padding: 6px 40px;
+}
+
+.check_box{ 
+  margin: 2px auto;
+  width: fit-content;
+  padding: 1px 100px;
+  box-sizing: border-box;
+  height: flex;
+  background-color: rgba(34, 34, 36, 0.8);
+}
+
+.form_box{
+  margin: 10px auto;
+  width: fit-content;
+  padding: 20px 20px;
+  box-sizing: border-box;
+  height: flex;
+  background-color: rgba(34, 34, 36, 0.8);
+}

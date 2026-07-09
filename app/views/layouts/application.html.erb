@@ -25,53 +25,54 @@
   <body>
     <header>
     <div>
-    <h1>ここは<%= content_for(:title) || "未設定ページ" %>です</h1>
+    <h1 class="title"><%= content_for(:title) || "未設定ページ" %></h1>
     </div>
 
-    <div>
-    <% if current_user&.present? %>
-    <%= link_to "ホームページへ", homes_path %>
-    <% end %>
-    </div>
-    <div>
-    <p>
+    <ul class="menu-groupe">
+    <li class="menu-item">
       <% if current_user&.name.present? %>
-        <%= link_to "こんにちは#{current_user.name}さん",user_path(current_user) %>
+        <%= button_to "マイページへ",user_path(current_user),method: :get %>
       <% else %>
-        こんにちは
+        こんにちはゲストさん
       <% end %>
+      </li>
 
-      権限:
-      <% if current_user&.role == "member" %>
-        一般
-      <% elsif current_user&.role == "admin" %>
-        <%= link_to "管理者", users_path %>
-      <% else %>
-        未ログイン
-      <% end %>
-      
       <% if current_user&.present? %>
-        <%=button_to "ログアウト",logout_path,method: :delete%>
+        <li class="menu-item"><%= button_to "ホームページへ", homes_path,method: :get %></li>
       <% end %>
-    </p>
-    </div>
 
-    <div>
-    <p>
+      <li class="menu-item">
+      <% if current_user&.role == "member" %>
+        権限:一般
+      <% elsif current_user&.role == "admin" %>
+        <%= button_to "権限:管理者", users_path,method: :get %>
+      <% else %>
+        権限:未ログイン
+      <% end %>
+      </li>
+
+
+      <li class="menu-item">
       通知:
       <% if flash[:notice] == nil %>
         ありません
       <% else %>
         <%= flash[:notice] %>
       <% end %>
-    
-    </p>
-    </div>
-
-    <div>
-    
-    </div>
-
+      </li>
+    </ul>
+<br>
+    <ul class="menu-groupe">
+    <% if current_user&.present? %>
+        <li class="menu-item"><%=button_to "ログアウト",logout_path,method: :delete%>
+      <% end %>
+      </li>
+      <li class="menu-item">
+      <% if current_user&.name.present? %>
+        <%= "ログイン：#{current_user.name}"%>
+      <% end %>
+      </li>
+    </ul>
 
 
   </header>
