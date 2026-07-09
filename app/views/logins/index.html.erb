@@ -1,4 +1,5 @@
 <% content_for :title, "ログインページ" %>
+<div class = "form_box">
 <%= form_with url: logins_path, scope: :login,
               data: { turbo: false } do |f| %>    
   <div> 
@@ -6,10 +7,11 @@
     <%= f.email_field :email %>
   </div>
   <div>
-    <%= f.label :password %>
+    <%= f.label :pass  %>
     <%= f.password_field :password %>
   </div>
-  <%= f.submit %>
+  <%= f.submit"ログイン" %>
 <% end %>
+</div>
 
 <%=link_to"defのマイページ",user_path(6)%>

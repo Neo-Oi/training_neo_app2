@@ -1,10 +1,11 @@
-<% content_for :title, "ユーザ一覧ページ" %>
+<% content_for :title, "一覧ページ" %>
+
 <h3>
 ユーザー一覧
 <br>
----
+<div class = "user_box_box">
 <% @users.each do |user|%>
-    <div>
+<div class = "user_box">
     <br>
     name: <%= user.name%>
     <br>
@@ -12,11 +13,11 @@
     <br>
     role: <%= user.role%>
     <br>
-    <%=link_to "編集",edit_user_path(user)%>
+    <%=button_to "編集",edit_user_path(user),method: :get%>
     <br>
-    ---
-    </div>
+</div>
 <%end%>
+</div>
 </h3>
 
-<h2><%=link_to "新規登録", new_user_path %></h2>
+<h2 class ="float"><%=button_to "新規登録", new_user_path,method: :get %></h2>

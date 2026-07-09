@@ -1,19 +1,22 @@
 <% content_for :title, "ホームページ" %>
-<div>
-<h3>ヘルプ</h3>
+<div class = "user_box">
+<h3>ヘッダー紹介</h3>
     <ul> 
-        <li>"こんにちはname"をクリックでマイページへ遷移</li>
+        <li>マイページ、ホームページへ遷移</li>
         <li>管理者でログインであれば、権限:"管理者"をクリックで管理者ページへ遷移</li>
+        <li>ログアウト可能</li>
+        <li>ログイン中の名前を確認可能</li>
+        <li>通知でフラッシュメッセージ確認可能</li>
     </ul>
 </div>
 
-<div>
+<div class = "check_box">
 <h4>確認用</h4>
-<p>権限</p>
+<p>権限確認リスト</p>
 <ul>
-<li><%= link_to "管理者一覧",users_path%></li>
-<li><%= link_to "新規作成",new_user_path%></li>
-<li><%= link_to "ユーザーdef編集",users_path(6)%></li>
-<li><%= button_to "ユーザーdef削除",users_path(6),method: :delete %></li>
+<li><%= button_to "管理者一覧",users_path,method: :get%></li>
+<li><%= button_to "新規作成",new_user_path,method: :get%></li>
+<li><%= button_to "ユーザーdef編集",edit_user_path(9),method: :get%></li>
+<li><%= button_to "ユーザーaaa削除",users_path(8),method: :delete,data: { turbo_confirm: "本当にaaaを削除しますか？" } %></li>
 </ul>
 </div>
