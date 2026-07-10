@@ -26,10 +26,9 @@ class UsersController < ApplicationController
         end
 
         if @user.update(user_params)
-            redirect_to users_path
-            flash.now[:notice] = "#{@user}のユーザ情報が更新されました"
+            redirect_to users_path,notice: "#{@user.name}のユーザ情報が更新されました"
         else
-            flash.now[:notice] = "#{@user}のユーザ情報の更新に失敗しました"
+            flash.now[:notice] = "#{@user.name}のユーザ情報の更新に失敗しました"
             render :edit, status: :unprocessable_entity
         end
     end

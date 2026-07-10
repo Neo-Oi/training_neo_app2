@@ -1,39 +1,27 @@
-header {
-  position: sticky;
-  top: 8px;
-  display: flex;
-  width: flex;
-  height: flex;
-  background-color: rgba(34, 34, 36);
-  align-items: center;
-}
+/*
+ *= require_tree .
+ *= require_self
+ */
+
  
 .title {
   text-align: left;
-  min-width: 250px;
-  max-width: 250px;
-  margin-left: 20px;
 }
  
-.menu-item {
-  display: inline-block;
-  padding: 10px;
-}
 
 body {
   background-color: rgb(11, 31, 58);
   width: flex;
   text-align: center;
-  align-items: center;
   color: white;
+  margin: 0px;
 }
 
 ul, ol {
   list-style: none;
-  padding-left: 0;
-  
 }
 
+/*基本的なボックス*/
 .user_box {
   margin: 30px auto;
   padding: 5px 50px;
@@ -47,6 +35,8 @@ ul, ol {
   border-radius: 50px;
   min-width: 8em;
   height:3em;
+  margin-top:10px;
+  padding: 5px 5px 5px 5px;
 }
 
 .float{
@@ -57,6 +47,7 @@ ul, ol {
   padding: 6px 40px;
 }
 
+/*権限確認ボックス*/
 .check_box{ 
   margin: 2px auto;
   width: fit-content;
@@ -66,11 +57,3 @@ ul, ol {
   background-color: rgba(34, 34, 36, 0.8);
 }
 
-.form_box{
-  margin: 10px auto;
-  width: fit-content;
-  padding: 20px 20px;
-  box-sizing: border-box;
-  height: flex;
-  background-color: rgba(34, 34, 36, 0.8);
-}
