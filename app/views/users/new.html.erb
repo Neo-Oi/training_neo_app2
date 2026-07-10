@@ -1,26 +1,29 @@
 <% content_for :title, "新規登録ページ" %>
-<h2>新規作成フォーム</h2>
-<div class = "form_box">
-<%= form_with model: @user do |f| %>
-  <div>
-    <%= f.label :name, "名前" %>
-    <%= f.text_field :name, class: "form-field", placeholder: "山田太郎" %>
-  </div>
+  <h2>新規作成フォーム</h2>
+    <div class = "form_box">
+      <%= form_with model: @user do |f| %>
+        <div>
+          <%= f.label :name, "名前" %>
+          <%= f.text_field :name, class: "form-field", placeholder: "山田太郎" %>
+        </div>
     
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email, class: "form-field", placeholder: "sample@example.com" %>
-  </div>
+        <div>
+          <%= f.label :email %>
+          <%= f.email_field :email, class: "form-field", placeholder: "sample@example.com" %>
+        </div>
 
-  <div>
-    <%= f.label :password,"パスワード" %>
-    <%= f.password_field :password, class: "form-field", placeholder: "パスワード" %>
-  </div>
+        <div>
+          <%= f.label :password,"パスワード" %>
+          <%= f.password_field :password, class: "form-field", placeholder: "パスワード" %>
+        </div>
 
-  <div>
-    <%= f.label :role,"権限" %>
-    <%= f.select :role, [["一般ユーザー", "member"], ["管理者", "admin"]],{},{class: 'form-field'}%>
-  </div>
-  <%= f.submit "新規登録",class: "form-button" %>
-  </div>
-<% end %>
+        <div>
+          <%= f.label :role,"権限" %>
+          <%= f.select :role, [["一般ユーザー", "member"], ["管理者", "admin"]],{},{class: 'form-field'}%>
+        </div>
+
+        <div>
+          <%= f.submit "新規登録",class: "form-button" %>
+        </div>
+      <% end %>
+    </div>

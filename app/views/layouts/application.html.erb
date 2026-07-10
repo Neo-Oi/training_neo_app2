@@ -24,59 +24,66 @@
 
   <body>
     <header>
-    <div class = "menu-groupe-left">
-    <h1 class="menu-item-left"><%= content_for(:title) || "未設定ページ" %></h1>
-    </div>
+      <div class = "menu-groupe-left">
+        <h1 class="menu-item-left"><%= content_for(:title) || "未設定ページ" %></h1>
+      </div>
 
-    <ul class="menu-groupe-mid">
-    <li class="menu-item-mid">
-      <% if current_user&.name.present? %>
-        <%= button_to "マイページへ",user_path(current_user),method: :get,class: "button" %>
-      <% else %>
-        こんにちはゲストさん
-      <% end %>
-      </li>
+      <ul class="menu-groupe-mid">
+        <li class="menu-item-mid">
+          <% if current_user&.name.present? %>
+            <%= button_to "マイページへ",user_path(current_user),method: :get,class: "button" %>
+          <% else %>
+            こんにちはゲストさん
+          <% end %>
+        </li>
 
-      <li class="menu-item-mid">
-      <% if current_user&.present? %>
-        <%= button_to "ホームページへ", homes_path,method: :get,class: "button" %></li>
-      <% end %>
-      </li>
-      <li class="menu-item-mid">
-      <% if current_user&.role == "member" %>
-        権限:一般
-      <% elsif current_user&.role == "admin" %>
-        <%= button_to "権限:管理者", users_path,method: :get,class: "button" %>
-      <% else %>
-        権限:未ログイン
-      <% end %>
-      </li>
-<br>
-      <li class="menu-item-mid">
-      通知:
-      <% if flash[:notice] == nil %>
-        ありません
-      <% else %>
-        <%= flash[:notice] %>
-      <% end %>
-      </li>
-    </ul>
-    <ul class="menu-groupe-right">
-    <% if current_user&.present? %>
-        <li class="menu-item-right"><%=button_to "ログアウト",logout_path,method: :delete,class: "button"%>
-      <% end %>
-      </li>
-      <li class="menu-item-right">
-      <% if current_user&.name.present? %>
-        <%= "ログイン：#{current_user.name}"%>
-      <% end %>
-      </li>
-    </ul>
+        <li class="menu-item-mid">
+          <% if current_user&.present? %>
+            <%= button_to "ホームページへ", homes_path,method: :get,class: "button" %></li>
+          <% end %>
+        </li>
 
-  </header>
+        <li class="menu-item-mid">
+         <% if current_user&.role == "member" %>
+            権限:一般
+          <% elsif current_user&.role == "admin" %>
+            <%= button_to "権限:管理者", users_path,method: :get,class: "button" %>
+          <% else %>
+            権限:未ログイン
+          <% end %>
+        </li>
+
+        <br>
+
+        <li class="menu-item-mid">
+          通知:
+            <% if flash[:notice] == nil %>
+              ありません
+            <% else %>
+              <%= flash[:notice] %>
+            <% end %>
+        </li>
+      </ul>
+
+      <ul class="menu-groupe-right">
+        <% if current_user&.present? %>
+          <li class="menu-item-right">
+            <%=button_to "ログアウト",logout_path,method: :delete,class: "button"%>
+          </li>
+        <% end %>
+
+        <li class="menu-item-right">
+          <% if current_user&.name.present? %>
+            <%= "ログイン：#{current_user.name}"%>
+          <% end %>
+        </li>
+      </ul>
+    </header>
+
     <%= yield %>
-  <footer>
-  </footer>
+
+    <footer>
+    </footer>
     
   </body>
 </html>

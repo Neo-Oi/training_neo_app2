@@ -1,17 +1,20 @@
 <% content_for :title, "ログインページ" %>
-<div class = "form_box">
-<%= form_with url: logins_path, scope: :login,
-              data: { turbo: false } do |f| %>    
-  <div> 
-    <%= f.label :email%>
-    <%= f.email_field :email, class: "form-field", placeholder: "sample@email.com"  %>
-  </div>
-  <div>
-    <%= f.label :pass,"パスワード"  %>
-    <%= f.password_field :password, class: "form-field", placeholder: "password" %>
-  </div>
-  <%= f.submit"ログイン",class: "form-button" %>
-<% end %>
-</div>
+  <div class = "form_box">
+    <%= form_with url: logins_path, scope: :login,data: { turbo: false } do |f| %>    
+      <div> 
+        <%= f.label :email%>
+        <%= f.email_field :email, class: "form-field", placeholder: "sample@email.com"  %>
+      </div>
 
-<%=link_to"defのマイページ",user_path(6)%>
+      <div>
+        <%= f.label :pass,"パスワード"  %>
+        <%= f.password_field :password, class: "form-field", placeholder: "password" %>
+      </div>
+
+      <div>
+        <%= f.submit"ログイン",class: "form-button" %>
+      </div>
+    <% end %>
+  </div>
+
+  <%=link_to"defのマイページ",user_path(6)%>
