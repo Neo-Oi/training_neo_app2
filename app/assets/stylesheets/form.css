@@ -32,3 +32,14 @@
   height: 2em;
   font-size: 15px;
 }
+
+.big-button{
+  border-radius: 100px;
+  width: 90px;
+  height: 90px;
+  font-size: 80px;
+  bottom: 30px;
+  right: 30px;
+  align-items: center;
+  text-align: center;
+}

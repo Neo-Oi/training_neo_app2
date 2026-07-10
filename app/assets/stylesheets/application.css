@@ -28,9 +28,11 @@ ul, ol {
   width: fit-content;
   background-color: rgba(34, 34, 36, 0.8);
   align-items: center;
+  overflow-wrap: break-word;
+  word-break: break-all;
 }
 
-.button_to button{
+.button{
   width: fit-content;
   border-radius: 50px;
   min-width: 8em;
@@ -45,6 +47,8 @@ ul, ol {
   bottom: 30px;
   right: 30px;
   padding: 6px 40px;
+  align-items: center;
+  text-align: center;
 }
 
 /*権限確認ボックス*/

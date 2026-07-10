@@ -4,7 +4,6 @@ header {
   display: flex;
   background-color: rgba(34, 34, 36);
   align-items: center;
-  margin: 0px auto;
 }
 
 .menu-groupe-mid{
@@ -49,4 +48,12 @@ header {
   align-items: left;
   text-align: left;
   margin-left: 40px;
+}
+
+.menu-groupe {
+  display: block;
+  text-align: center;
+  align-items: center;
+  flex: 1;
+  padding: 5px 5px 5px 5px;
 }
