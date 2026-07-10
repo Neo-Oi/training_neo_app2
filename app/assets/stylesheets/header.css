@@ -1,0 +1,52 @@
+header {
+  position: sticky;
+  top: 0px;
+  display: flex;
+  background-color: rgba(34, 34, 36);
+  align-items: center;
+  margin: 0px auto;
+}
+
+.menu-groupe-mid{
+  display: block;
+  text-align: center;
+  align-items: center;
+  flex: 1.5;
+  padding: 5px 5px 5px 5px;
+}
+
+.menu-item-mid {
+  display: inline-block;
+  align-items: center;
+  text-align: center;
+}
+
+.menu-groupe-right{
+  display: block;
+  text-align: right;
+  align-items: right;
+  flex: 1;
+  padding: 5px 5px 5px 5px;
+}
+
+.menu-item-right {
+  display: block;
+  align-items: right;
+  text-align: right;
+  margin-right: 40px;
+}
+
+.menu-groupe-left {
+  display: block;
+  text-align: left;
+  align-items: left;
+  flex: 1;
+  padding: 5px 5px 5px 5px;
+}
+
+.menu-item-left {
+  display: block;
+  align-items: left;
+  text-align: left;
+  margin-left: 40px;
+}
