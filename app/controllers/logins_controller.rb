@@ -1,11 +1,12 @@
 class LoginsController < ApplicationController
-    skip_before_action :user_init,only: %i[index create destroy]
-    skip_before_action :role_init,only: %i[index create destroy]
+    skip_before_action :user_init, only: %i[index create destroy]
+    skip_before_action :role_init, only: %i[index create destroy]
 
     def create
         session[:login_failed_count] ||= 0
+
         if session[:login_failed_count] >= 2
-           redirect_to fails_path,notice: "ログイン回数が３回を超えました"
+           redirect_to fails_path, notice: "ログイン回数が３回を超えました"
            return
         end
 
@@ -24,18 +25,18 @@ class LoginsController < ApplicationController
         if user&.authenticate(params[:login][:password])
             session[:user_id] = user.id
             session[:login_failed_count] = 0
-            redirect_to homes_path,notice: "ログインに成功しました"
-            return
+            redirect_to homes_path, notice: "ログインに成功しました"
+            nil
         else
             session[:login_failed_count] += 1
             flash.now[:notice] = "#{session[:login_failed_count]}回目の失敗　原因:パスワードまたはメールアドレスが異なります。"
             render :index, status: :unprocessable_entity
-            return
+            nil
         end
     end
 
     def destroy
         reset_session
-        redirect_to root_path,notice: "ログアウトしました"
+        redirect_to root_path, notice: "ログアウトしました"
     end
 end

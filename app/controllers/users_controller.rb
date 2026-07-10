@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :role_init,only: %i[show]
+    skip_before_action :role_init, only: %i[show]
     def index
         @users = User.all
     end
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
         end
 
         if @user.update(user_params)
-            redirect_to users_path,notice: "#{@user.name}のユーザ情報が更新されました"
+            redirect_to users_path, notice: "#{@user.name}のユーザ情報が更新されました"
         else
             flash.now[:notice] = "#{@user.name}のユーザ情報の更新に失敗しました"
             render :edit, status: :unprocessable_entity
@@ -36,8 +36,8 @@ class UsersController < ApplicationController
     def new
         @user = User.new
     end
-    
-   
+
+
 
     def create
         @user = User.new(user_params)
@@ -53,11 +53,11 @@ class UsersController < ApplicationController
         end
 
         if @user.save
-            redirect_to users_path,notice: "#{@user.name}の作成に成功しました"
+            redirect_to users_path, notice: "#{@user.name}の作成に成功しました"
         else
             flash.now[:notice] = "ユーザの作成に失敗しました"
             render :new, status: :unprocessable_entity
-            return
+            nil
         end
     end
 
@@ -66,7 +66,7 @@ class UsersController < ApplicationController
 
         if current_user.role == "admin"
             @user.destroy
-            redirect_to root_path,notice: "#{@user.name}の削除に成功しました"
+            redirect_to root_path, notice: "#{@user.name}の削除に成功しました"
         else
             flash.now[:notice] = "権限がないため削除に失敗しました"
             render :edit, status: :unprocessable_entity

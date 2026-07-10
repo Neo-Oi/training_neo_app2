@@ -1,25 +1,24 @@
 <% content_for :title, "一覧ページ" %>
 
-<h3>
-ユーザー一覧
-<br>
-<div class = "user_box_box">
-<% @users.each do |user|%>
-<div class = "user_box">
-    <br>
-    name: <%= user.name%>
-    <br>
-    email: <%= user.email%>
-    <br>
-    role: <%= user.role%>
-    <br>
-    <%=button_to "編集",edit_user_path(user),method: :get,class: "button"%>
-    <br>
-</div>
-<%end%>
-</div>
-</h3>
+    <h2>ユーザー一覧</h2>
+        <br>
+    <div class = "user_box_box">
+        <% @users.each do |user|%>
+            <div class = "user_box">
+                <br>
+            name: <%= user.name%>
+                <br>
+            email: <%= user.email%>
+                <br>
+            role: <%= user.role%>
+                <br>
+            <%=button_to "編集",edit_user_path(user),method: :get,class: "button"%>
+                <br>
+            </div>
+        <%end%>
+    </div>
 
-<div class ="float">
-<%=button_to "+", new_user_path,method: :get,class: "big-button" %>
-</div>
+
+    <div class ="float">
+        <%=button_to "+", new_user_path,method: :get,class: "big-button" %>
+    </div>

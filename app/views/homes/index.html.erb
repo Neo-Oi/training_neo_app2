@@ -1,22 +1,22 @@
 <% content_for :title, "ホームページ" %>
 <div class = "user_box">
-<h3>ヘッダー紹介</h3>
-    <ul> 
-        <li>マイページ、ホームページへ遷移</li>
-        <li>管理者でログインであれば、権限:"管理者"をクリックで管理者ページへ遷移</li>
-        <li>ログアウト可能</li>
-        <li>ログイン中の名前を確認可能</li>
-        <li>通知でフラッシュメッセージ確認可能</li>
-    </ul>
+    <h3>ヘッダー紹介</h3>
+        <ul> 
+            <li>マイページ、ホームページへ遷移</li>
+            <li>管理者でログインであれば、権限:"管理者"をクリックで管理者ページへ遷移</li>
+            <li>ログアウト可能</li>
+            <li>ログイン中の名前を確認可能</li>
+            <li>通知でフラッシュメッセージ確認可能</li>
+        </ul>
 </div>
 
 <div class = "check_box">
-<h4>確認用</h4>
-<p>権限確認リスト</p>
-<ul class = "menu-groupe">
-<li><%= button_to "管理者一覧",users_path,method: :get,class: "button"%></li>
-<li><%= button_to "新規作成",new_user_path,method: :get,class: "button"%></li>
-<li><%= button_to "ユーザーdef編集",edit_user_path(9),method: :get,class: "button"%></li>
-<li><%= button_to "ユーザーaaa削除",users_path(8),method: :delete,class: "button",data: { turbo_confirm: "本当にaaaを削除しますか？" } %></li>
-</ul>
+    <h4>確認用</h4>
+        <p>権限確認リスト</p>
+            <ul class = "menu-groupe">
+                <li><%= button_to "管理者一覧",users_path,method: :get,class: "button"%></li>
+                <li><%= button_to "新規作成",new_user_path,method: :get,class: "button"%></li>
+                <li><%= button_to "ユーザーdef編集",edit_user_path(9),method: :get,class: "button"%></li>
+                <li><%= button_to "ユーザーaaa削除",users_path(8),method: :delete,class: "button",data: { turbo_confirm: "本当にaaaを削除しますか？" } %></li>
+            </ul>
 </div>
