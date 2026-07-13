@@ -1,14 +1,14 @@
 <% content_for :title, "ログインページ" %>
   <div class = "form_box">
     <%= form_with url: logins_path, scope: :login,data: { turbo: false } do |f| %>    
-      <div> 
-        <%= f.label :email%>
-        <%= f.email_field :email, class: "form-field", placeholder: "sample@email.com"  %>
+      <div>
+        <%= f.label :email, "メールアドレス" %>
+        <%= f.email_field :email, class: "form-field", placeholder: "sample@email.com", required: true, autocomplete: "email" %>
       </div>
 
       <div>
-        <%= f.label :pass,"パスワード"  %>
-        <%= f.password_field :password, class: "form-field", placeholder: "password" %>
+        <%= f.label :password, "パスワード" %>
+        <%= f.password_field :password, class: "form-field", placeholder: "password", required: true, autocomplete: "current-password" %>
       </div>
 
       <div>

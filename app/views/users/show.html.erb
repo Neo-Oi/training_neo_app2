@@ -1,7 +1,7 @@
-<% content_for :title, "マイページ" %>
-    <h3><%= current_user.name %>の情報</h3>
+<% content_for :title, @user == current_user ? "マイページ" : "#{@user.name}のユーザー情報" %>
+    <h3><%= @user.name %>の情報</h3>
         <ul class = "user_box">
-            <li>name: <%=current_user.name%></li>
-            <li>email: <%=current_user.email%></li>
-            <li>role: <%=current_user.role%></li>
+            <li>名前: <%= @user.name %></li>
+            <li>メールアドレス: <%= @user.email %></li>
+            <li>権限: <%= role_label(@user.role) %></li>
         </ul>

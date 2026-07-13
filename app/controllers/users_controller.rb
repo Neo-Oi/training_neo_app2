@@ -8,7 +8,7 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
 
         unless current_user.role == "admin" || @user == current_user
-            redirect_to homes_path, notice: "権限がありません"
+            redirect_to homes_path, alert: "権限がありません"
         end
     end
 
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
         blanks = blank_fields(:user, %i[email name role])
 
         if blanks.any?
-            flash.now[:notice] = "#{blanks.join(',')}は必須項目です"
+            flash.now[:alert] = "#{blanks.join(',')}は必須項目です"
             render :edit, status: :unprocessable_entity
             return
         end
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
         if @user.update(user_params)
             redirect_to users_path, notice: "#{@user.name}のユーザ情報が更新されました"
         else
-            flash.now[:notice] = "#{@user.name}のユーザ情報の更新に失敗しました"
+            flash.now[:alert] = "#{@user.name}のユーザ情報の更新に失敗しました"
             render :edit, status: :unprocessable_entity
         end
     end
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
         blanks = blank_fields(:user, %i[email password name role])
 
         if blanks.any?
-            flash.now[:notice] = "#{blanks.join(',')}は必須項目です"
+            flash.now[:alert] = "#{blanks.join(',')}は必須項目です"
             render :new, status: :unprocessable_entity
             return
         end
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
         if @user.save
             redirect_to users_path, notice: "#{@user.name}の作成に成功しました"
         else
-            flash.now[:notice] = "ユーザの作成に失敗しました"
+            flash.now[:alert] = "ユーザの作成に失敗しました"
             render :new, status: :unprocessable_entity
         end
     end

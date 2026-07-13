@@ -5,17 +5,17 @@
       <%= form_with model: @user do |f| %>
         <div>
           <%= f.label :name, "名前" %>
-          <%= f.text_field :name, class: "form-field", placeholder: "山田太郎" %>
+          <%= f.text_field :name, class: "form-field", placeholder: "山田太郎", required: true %>
         </div>
-    
+
         <div>
-          <%= f.label :email %>
-          <%= f.email_field :email, class: "form-field", placeholder: "sample@example.com" %>
+          <%= f.label :email, "メールアドレス" %>
+          <%= f.email_field :email, class: "form-field", placeholder: "sample@example.com", required: true, autocomplete: "email" %>
         </div>
 
         <div>
           <%= f.label :password,"パスワード" %>
-          <%= f.password_field :password, class: "form-field", placeholder: "パスワード" %>
+          <%= f.password_field :password, class: "form-field", placeholder: "パスワード", required: true, autocomplete: "new-password" %>
         </div>
 
         <div>

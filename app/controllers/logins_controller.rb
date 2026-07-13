@@ -6,14 +6,14 @@ class LoginsController < ApplicationController
         session[:login_failed_count] ||= 0
 
         if session[:login_failed_count] >= 2
-           redirect_to fails_path, notice: "ログイン回数が３回を超えました"
+           redirect_to fails_path, alert: "ログイン回数が３回を超えました"
            return
         end
 
         blanks = blank_fields(:login, %i[email password])
 
         if blanks.any?
-            flash.now[:notice] = "#{blanks.join(',')}は必須項目です"
+            flash.now[:alert] = "#{blanks.join(',')}は必須項目です"
             render :index, status: :unprocessable_entity
             return
         end
@@ -27,7 +27,7 @@ class LoginsController < ApplicationController
             return
         else
             session[:login_failed_count] += 1
-            flash.now[:notice] = "#{session[:login_failed_count]}回目の失敗　原因:パスワードまたはメールアドレスが異なります。"
+            flash.now[:alert] = "#{session[:login_failed_count]}回目の失敗　原因:パスワードまたはメールアドレスが異なります。"
             render :index, status: :unprocessable_entity
         end
     end

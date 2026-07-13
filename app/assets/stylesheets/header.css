@@ -57,3 +57,19 @@ header {
   flex: 1;
   padding: 5px 5px 5px 5px;
 }
+
+.flash {
+  font-weight: bold;
+  padding: 2px 10px;
+  border-radius: 10px;
+}
+
+.flash-notice {
+  color: #1f7a3f;
+  background-color: #c6f0d3;
+}
+
+.flash-alert {
+  color: #8a1f1f;
+  background-color: #f8d0d0;
+}

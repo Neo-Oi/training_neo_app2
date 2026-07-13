@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
     <title><%= yield(:title).presence || "プライムテック研修開発" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -39,7 +39,7 @@
 
         <li class="menu-item-mid">
           <% if current_user&.present? %>
-            <%= button_to "ホームページへ", homes_path,method: :get,class: "button" %></li>
+            <%= button_to "ホームページへ", homes_path,method: :get,class: "button" %>
           <% end %>
         </li>
 
@@ -57,10 +57,12 @@
 
         <li class="menu-item-mid">
           通知:
-            <% if flash[:notice] == nil %>
-              ありません
+            <% if flash[:alert].present? %>
+              <span class="flash flash-alert"><%= flash[:alert] %></span>
+            <% elsif flash[:notice].present? %>
+              <span class="flash flash-notice"><%= flash[:notice] %></span>
             <% else %>
-              <%= flash[:notice] %>
+              ありません
             <% end %>
         </li>
       </ul>

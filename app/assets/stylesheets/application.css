@@ -51,6 +51,18 @@ ul, ol {
   text-align: center;
 }
 
+.user_box_box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px auto;
+}
+
+.user_box_box .user_box {
+  margin: 0;
+}
+
 /*権限確認ボックス*/
 .check_box{ 
   margin: 2px auto;
