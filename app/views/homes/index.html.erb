@@ -17,6 +17,7 @@
                 <li><%= button_to "管理者一覧",users_path,method: :get,class: "button"%></li>
                 <li><%= button_to "新規作成",new_user_path,method: :get,class: "button"%></li>
                 <li><%= button_to "ユーザーdef編集",edit_user_path(9),method: :get,class: "button"%></li>
-                <li><%= button_to "ユーザーaaa削除",users_path(12),method: :delete,class: "button",data: { turbo_confirm: "本当にaaaを削除しますか？" } %></li>
+                <li><%= button_to "aaaの削除", user_path(12),method: :delete,class: "button",data: { turbo_confirm: "本当に削除しますか？" } %>
+
             </ul>
 </div>
