@@ -26,12 +26,11 @@ class LoginsController < ApplicationController
             session[:user_id] = user.id
             session[:login_failed_count] = 0
             redirect_to homes_path, notice: "ログインに成功しました"
-            nil
+            return
         else
             session[:login_failed_count] += 1
             flash.now[:notice] = "#{session[:login_failed_count]}回目の失敗　原因:パスワードまたはメールアドレスが異なります。"
             render :index, status: :unprocessable_entity
-            nil
         end
     end
 

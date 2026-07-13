@@ -22,11 +22,11 @@ class UsersController < ApplicationController
         if blanks.any?
             flash.now[:notice] = "#{blanks.join(',')}は必須項目です"
             render :edit, status: :unprocessable_entity
-            return
         end
 
         if @user.update(user_params)
             redirect_to users_path, notice: "#{@user.name}のユーザ情報が更新されました"
+            return
         else
             flash.now[:notice] = "#{@user.name}のユーザ情報の更新に失敗しました"
             render :edit, status: :unprocessable_entity
@@ -36,8 +36,6 @@ class UsersController < ApplicationController
     def new
         @user = User.new
     end
-
-
 
     def create
         @user = User.new(user_params)
@@ -54,23 +52,25 @@ class UsersController < ApplicationController
 
         if @user.save
             redirect_to users_path, notice: "#{@user.name}の作成に成功しました"
+            return
         else
             flash.now[:notice] = "ユーザの作成に失敗しました"
             render :new, status: :unprocessable_entity
-            nil
         end
     end
 
     def destroy
-        @user = User.find(params[:id])
-
         if current_user.role == "admin"
+            @user = User.find(params[:id])
             @user.destroy
-            redirect_to root_path, notice: "#{@user.name}の削除に成功しました"
+            redirect_to users_path, notice: "#{@user.name}の削除に成功しました"
+            return
+        elsif current_user.role == "member"
+            redirect_to homes_path, notice: "権限がないため削除に失敗しました"
+            return
         else
-            flash.now[:notice] = "権限がないため削除に失敗しました"
-            render :edit, status: :unprocessable_entity
-        end
+            redirect_to homes_path, notice: "削除に失敗しました"
+        end        
     end
 
     private
