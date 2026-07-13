@@ -6,6 +6,10 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
+
+        unless current_user.role == "admin" || @user == current_user
+            redirect_to homes_path, notice: "権限がありません"
+        end
     end
 
     def edit
@@ -15,18 +19,16 @@ class UsersController < ApplicationController
     def update
         @user = User.find(params[:id])
 
-        blanks = %i[email password name role].select do |field|
-            params[:user][field].blank?
-        end
+        blanks = blank_fields(:user, %i[email name role])
 
         if blanks.any?
             flash.now[:notice] = "#{blanks.join(',')}は必須項目です"
             render :edit, status: :unprocessable_entity
+            return
         end
 
         if @user.update(user_params)
             redirect_to users_path, notice: "#{@user.name}のユーザ情報が更新されました"
-            return
         else
             flash.now[:notice] = "#{@user.name}のユーザ情報の更新に失敗しました"
             render :edit, status: :unprocessable_entity
@@ -40,9 +42,7 @@ class UsersController < ApplicationController
     def create
         @user = User.new(user_params)
 
-        blanks = %i[email password name role].select do |field|
-            params[:user][field].blank?
-        end
+        blanks = blank_fields(:user, %i[email password name role])
 
         if blanks.any?
             flash.now[:notice] = "#{blanks.join(',')}は必須項目です"
@@ -52,7 +52,6 @@ class UsersController < ApplicationController
 
         if @user.save
             redirect_to users_path, notice: "#{@user.name}の作成に成功しました"
-            return
         else
             flash.now[:notice] = "ユーザの作成に失敗しました"
             render :new, status: :unprocessable_entity
@@ -60,17 +59,9 @@ class UsersController < ApplicationController
     end
 
     def destroy
-        if current_user.role == "admin"
-            @user = User.find(params[:id])
-            @user.destroy
-            redirect_to users_path, notice: "#{@user.name}の削除に成功しました"
-            return
-        elsif current_user.role == "member"
-            redirect_to homes_path, notice: "権限がないため削除に失敗しました"
-            return
-        else
-            redirect_to homes_path, notice: "削除に失敗しました"
-        end        
+        @user = User.find(params[:id])
+        @user.destroy
+        redirect_to users_path, notice: "#{@user.name}の削除に成功しました"
     end
 
     private

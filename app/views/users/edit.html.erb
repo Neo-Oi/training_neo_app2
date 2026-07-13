@@ -2,6 +2,7 @@
 
 
   <div class = "user_box">
+    <%= render "shared/error_message", object: @user %>
     <%= form_with model: @user do |f| %>
       <div>
         <%= f.label :name %>
@@ -15,7 +16,7 @@
 
       <div>
         <%= f.label :password %>
-        <%= f.password_field :password, class: "form-field", placeholder: "password" %>
+        <%= f.password_field :password, class: "form-field", placeholder: "変更する場合のみ入力" %>
       </div>
 
       <div>

@@ -10,9 +10,7 @@ class LoginsController < ApplicationController
            return
         end
 
-        blanks = %i[email password].select do |field|
-            params[:login][field].blank?
-        end
+        blanks = blank_fields(:login, %i[email password])
 
         if blanks.any?
             flash.now[:notice] = "#{blanks.join(',')}は必須項目です"

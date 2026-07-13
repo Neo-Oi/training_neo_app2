@@ -18,4 +18,8 @@ private
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
   end
+
+  def blank_fields(scope, fields)
+    fields.select { |field| params[scope][field].blank? }
+  end
 end

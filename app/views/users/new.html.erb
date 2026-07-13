@@ -1,6 +1,7 @@
 <% content_for :title, "新規登録ページ" %>
   <h2>新規作成フォーム</h2>
     <div class = "form_box">
+      <%= render "shared/error_message", object: @user %>
       <%= form_with model: @user do |f| %>
         <div>
           <%= f.label :name, "名前" %>
